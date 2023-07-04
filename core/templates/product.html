@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+<!-- title name -->
+{% block title %} Products {% endblock %}
+
+<!-- add active class to product in nav bar -->
+{% block product_nav %} active {% endblock %}
+
+<!-- content -->
+{% block content %}
+<div class="container-fluid text-center">
+  <h1>Produts</h1>
+  <br />
+
+  <div class="container-sm">
+    {% if products %}
+    <table class="table table-info table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in products %}
+        <tr class="table-light">
+          <td>{{product.product_id}}</td>
+          <td>{{product.name}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <h3 class="text-secondary">No products added</h3>
+    {% endif %}
+    <br /><br />
+
+    <form action="http://127.0.0.1:5000/Add/Edit/ViewProduct/" method="post">
+      <div class="row g-3 align-items-center">
+        <div class="col-auto">
+          <label for="product_name" class="col-form-label">Name</label>
+        </div>
+        <div class="col-auto">
+          <input
+            type="text"
+            name="product_name"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-outline-primary">
+            Add Product
+          </button>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=True) %} {% if
+        messages %} {% for category, message in messages %}
+        <div class="col-auto">
+          <span class="form-text {{category}}"> {{message}} </span>
+        </div>
+        {% endfor %} {% endif %} {% endwith %}
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

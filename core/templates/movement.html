@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+
+<!-- title name -->
+{% block title %} Warehouse {% endblock %}
+
+<!-- add active class to movement in nav bar -->
+{% block movement_nav %} active {% endblock %}
+
+<!-- content -->
+{% block content %}
+<div class="container-fluid text-center">
+  <h1>Warehouse</h1>
+  <br />
+
+  <div class="container-sm">
+    {% if context.movements %}
+    <table class="table table-info table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Location</th>
+          <th scope="col">Product Name</th>
+          <th scope="col">Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for movement in context.movements %}
+        <tr class="table-light">
+          <!-- [0]-location, [1]-product, [2]-quantity -->
+          <td>
+            <a
+              class="link-dark link-offset-2 link-underline link-underline-opacity-0"
+              href="{{ url_for('movement') + '?location=' + movement[0]}}"
+            >
+              {{movement[0]}}</a
+            >
+          </td>
+          <td>{{movement[1]}}</td>
+          <td>{{movement[2]}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <h3 class="text-secondary">No Products here!</h3>
+    <p>Why not import some products here?</p>
+    {% endif %}
+    <br /><br />
+
+    <h3>Move Product</h3>
+    <form
+      action="/Add/Edit/ViewProductMovement/"
+      method="post"
+      onsubmit="return validateForm()"
+    >
+      <div class="row g-3 align-items-center">
+        <div class="col-md-3">
+          <div class="col-auto">
+            <label for="from_location" class="form-label">From</label>
+          </div>
+          <div class="col-auto">
+            <select
+              name="from_location"
+              id="from_location"
+              class="form-select"
+              required
+            >
+              <option value="">Select from location</option>
+              <option value="import">import</option>
+              {% for location in context.locations %}
+              <option value="{{location.name}}">{{location.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="col-auto">
+            <label for="to_location" class="form-label">To</label>
+          </div>
+          <div class="col-auto">
+            <select
+              name="to_location"
+              id="to_location"
+              class="form-select"
+              required
+            >
+              <option value="">Select to location</option>
+              <option value="export">export</option>
+              {% for location in context.locations %}
+              <option value="{{location.name}}">{{location.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="col-auto">
+            <label for="product" class="form-label">Product</label>
+          </div>
+          <div class="col-auto">
+            <select name="product" class="form-select" required>
+              <option value="">Select Product</option>
+              {% for product in context.products %}
+              <option value="{{product.name}}">{{product.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="col-auto">
+            <label for="quantity" class="col-form-label">Quantity</label>
+          </div>
+          <div class="col-auto">
+            <input
+              type="number"
+              name="quantity"
+              class="form-control"
+              min="1"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <button type="submit" class="btn btn-outline-primary">
+            Move Product
+          </button>
+        </div>
+
+        <!-- for server side message -->
+        {% with messages = get_flashed_messages(with_categories=True) %} {% if
+        messages %} {% for category, message in messages %}
+        <div class="col-md-12">
+          <span class="form-text {{category}}"> {{message}} </span>
+        </div>
+        {% endfor %} {% endif %} {% endwith %}
+
+        <!-- for validation error -->
+        <div class="col-md-12" id="show_error">
+          <span class="form-text text-danger"></span>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<br /><br />
+
+<script src="{{ url_for('static', filename='js/movement.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+<!-- title name -->
+{% block title %} Locations {% endblock %}
+
+<!-- add active class in nav bar -->
+{% block location_nav %} active {% endblock %}
+
+<!-- content -->
+{% block content %}
+
+<div class="container-fluid text-center">
+  <h1>Locations</h1>
+  <br />
+
+  <div class="container-sm">
+    {% if locations %}
+    <table class="table table-info table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for location in locations %}
+        <tr class="table-light">
+          <td>{{location.location_id}}</td>
+          <td>{{location.name}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <h3 class="text-secondary">No Locations added</h3>
+    {% endif %}
+    <br /><br />
+
+    <form action="http://127.0.0.1:5000/Add/Edit/ViewLocation/" method="post">
+      <div class="row g-3 align-items-center">
+        <div class="col-auto">
+          <label for="location_name" class="col-form-label">Place</label>
+        </div>
+        <div class="col-auto">
+          <input
+            type="text"
+            name="location_name"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-outline-primary">
+            Add Location
+          </button>
+        </div>
+
+        <!-- to show server side message -->
+        {% with messages = get_flashed_messages(with_categories=True) %} {% if
+        messages %} {% for category, message in messages %}
+        <div class="col-auto">
+          <span class="form-text {{category}}"> {{message}} </span>
+        </div>
+        {% endfor %} {% endif %} {% endwith %}
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
