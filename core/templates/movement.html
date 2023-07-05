@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 <!-- title name -->
-{% block title %} Warehouse {% endblock %}
+{% block title %} Product Movement {% endblock %}
 
 <!-- add active class to movement in nav bar -->
 {% block movement_nav %} active {% endblock %}
@@ -9,7 +9,7 @@
 <!-- content -->
 {% block content %}
 <div class="container-fluid text-center">
-  <h1>Warehouse</h1>
+  <h1>Movements</h1>
   <br />
 
   <div class="container-sm">
@@ -17,25 +17,52 @@
     <table class="table table-info table-hover">
       <thead>
         <tr>
-          <th scope="col">Location</th>
+          <th scope="col">From</th>
+          <th scope="col">To</th>
           <th scope="col">Product Name</th>
+          <th scope="col">Moved at</th>
           <th scope="col">Quantity</th>
         </tr>
       </thead>
       <tbody>
         {% for movement in context.movements %}
         <tr class="table-light">
-          <!-- [0]-location, [1]-product, [2]-quantity -->
+          <!-- if from location is blank -->
+          {% if movement.from_location %}
           <td>
             <a
               class="link-dark link-offset-2 link-underline link-underline-opacity-0"
-              href="{{ url_for('movement') + '?location=' + movement[0]}}"
+              href="{{ url_for('warehouse') + '?location=' + movement.from_location.name}}"
             >
-              {{movement[0]}}</a
+              {{movement.from_location.name}}</a
             >
           </td>
-          <td>{{movement[1]}}</td>
-          <td>{{movement[2]}}</td>
+          {% else %}
+          <td></td>
+          {% endif %}
+
+          <!-- if to location is blank -->
+          {% if movement.to_location %}
+          <td>
+            <a
+              class="link-dark link-offset-2 link-underline link-underline-opacity-0"
+              href="{{ url_for('warehouse') + '?location=' + movement.to_location.name}}"
+            >
+              {{movement.to_location.name}}</a
+            >
+          </td>
+          {% else %}
+          <td></td>
+          {% endif %}
+          <!-- <a
+              class="link-dark link-offset-2 link-underline link-underline-opacity-0"
+              href="{{ url_for('warehouse')}}"
+            >
+              {{movement[0]}}</a
+            > -->
+          <td>{{movement.product.name}}</td>
+          <td>{{movement.timestamp.strftime("%d-%m-%Y %I:%M:%S %p")}}</td>
+          <td>{{movement.quantity}}</td>
         </tr>
         {% endfor %}
       </tbody>
