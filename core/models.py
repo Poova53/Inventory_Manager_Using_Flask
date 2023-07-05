@@ -31,4 +31,7 @@ class ProductMovement(db.Model):
     to_location = db.relationship("Location", foreign_keys=[to_location_id])
     
     def __repr__(self):
-        return f"<{self.quantity} {self.product.name}(s) in {self.to_location.name}>"
+        if self.to_location:
+            return f"<{self.quantity} {self.product.name}(s) in {self.to_location.name}>"
+        
+        return f"<{self.quantity} {self.product.name}(s) exported"
