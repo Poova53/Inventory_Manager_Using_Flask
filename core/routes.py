@@ -97,11 +97,11 @@ def movement():
                                 product_movement.quantity = added_quantity - quantity
                                 
                             else:
-                                db.session.delete(product_movement)
+                                product_movement.quantity = 0
+                                
                             db.session.commit()
                             break
-
-                        db.session.delete(product_movement)
+                        product_movement.quantity = 0
 
                     # if we want to move product out(export)
                     if to_location_name == "export":
@@ -119,23 +119,30 @@ def movement():
                     db.session.add(new_movement)
                     db.session.commit()
 
-    # adding same product which was from same location and then sort by location
-    movements = db.session.query(Location.name, Product.name, func.sum(ProductMovement.quantity)).\
-                    join(ProductMovement, Location.location_id==ProductMovement.to_location_id).\
-                    join(Product, Product.product_id==ProductMovement.product_id).\
-                    group_by(ProductMovement.to_location_id, Product.name).\
-                    order_by(Location.name.asc(), Product.name.asc()).all()
+    # querying all product movements, products and locations
+    movements = ProductMovement.query.order_by(ProductMovement.timestamp.asc()).all()
     products = Product.query.order_by(Product.name).all()
     locations = Location.query.order_by(Location.name).all()
     
-    query_location = request.args.get("location")
-    if query_location:
-        exist = Location.query.filter(Location.name==query_location.capitalize()).first()
-        
-        if not exist:
-            flash("Requested Location not available")
-        else:
-            movements = [movement for movement in movements if movement[0]==exist.name]
-    
     context = {"movements": movements, "products": products, "locations": locations}
     return render_template("movement.html", context=context)
+
+
+# to get reports in each location
+@app.route("/Warehouse/", methods=['GET'])
+def warehouse():
+    location = request.args.get("location")
+    inventory = []
+    
+    if location:
+        location_db = Location.query.filter(Location.name==location.capitalize()).first()
+        
+        if location_db:
+            inventory = db.session.query(Product.name, func.sum(ProductMovement.quantity)).\
+                            join(ProductMovement, Product.product_id==ProductMovement.product_id).\
+                            join(Location, Location.location_id==ProductMovement.to_location_id).\
+                            filter(ProductMovement.to_location_id==location_db.location_id).\
+                            group_by(Product.name).\
+                            order_by(Product.name.asc()).all()
+    
+    return render_template("warehouse.html", location=location, inventory=inventory)

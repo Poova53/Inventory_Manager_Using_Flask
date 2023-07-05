@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+<!-- title -->
+{% block title %} Warehouse {% endblock %}
+
+<!-- content -->
+{% block content %}
+<div class="container-fluid text-center">
+  {% if inventory %}
+  <h1>Products in {{location}}</h1>
+  <br />
+
+  <div class="container-sm">
+    <table class="table table-info table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Product Name</th>
+          <th scope="col">Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for data in inventory %}
+        <tr class="table-light">
+          <td>{{data[0]}}</td>
+          <td>{{data[1]}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    {% else %}
+
+    <h1 class="text-danger">No Products here</h1>
+    <p>Make sure you typed correct location if you manually entered the url</p>
+
+    {% endif %}
+  </div>
+  {% endblock %}
+</div>
