@@ -139,7 +139,7 @@ In the server side, many checks and processes need to be done. At first the prod
 
 ## **Report**
 
-Created an warehouse view to present the products and its quantity in each location. This view takes location as query parameter in URL(http://127.0.0.1:5000/Warehouse/?location=<location name>). User can enter this report of a specific location by click the the location name in View Product Movement view. It is important to note that **some products are moved out** (exported). So considering the exported products in the quantity summation, the total quantity of all products remains balanced.
+Created an warehouse view to present the products and its quantity in each location. This view takes location as query parameter in URL(http://127.0.0.1:5000/Warehouse/?location=*location name*). User can enter this report of a specific location by click the the location name in View Product Movement view. It is important to note that **some products are moved out** (exported). So considering the exported products in the quantity summation, the total quantity of all products remains balanced.
 
 - In Chennai
 ![report_in_chennai](https://github.com/Poova53/Inventory_Manager_Using_Flask/assets/75072789/fd578455-0173-445f-a9c8-a8988c1f2d2b)
