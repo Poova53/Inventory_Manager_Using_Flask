@@ -16,7 +16,7 @@ This table consist of two columns product_id which serves as the primary key and
 ### Location Table
 
 The location table consists of two columns location_id which is the primary key and location column which is unique and stores the name of each warehouse location.
-![location table](https://github.com/Poova53/Inventory_Manager_Using_Flask/blob/main/screenshots/location_table.png)
+![location table](http://allpicts.in/wp-content/uploads/2018/03/Natural-Images-HD-1080p-Download-with-Keyhole-Arch-at-Pfeiffer-Beach.jpg)
 
 ### Product Movement Table
 
