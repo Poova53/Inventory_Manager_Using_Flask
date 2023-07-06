@@ -23,12 +23,12 @@ The location table consists of two columns location_id which is the primary key 
 ### Product Movement Table
 
 The product movement table consists of six columns:
-    1. movement_id: primary key
-    2. timestamp: It records the date and time of the product movement.
-    3. from_location_id: It stores the identifier of the location from which the product is being moved. It references the location_id in the location table, indicating the source location of the product.
-    4. to_location_id: It stores the identifier of the destination for the product movement. It references the corresponding location_id in the location table, indicating the target location where the product is being moved.
-    5. product_id: It stores the identifier of the specific product being moved. It references the product_id in the product table, linking the movements to the relevant product.
-    6. quantity: It records the quantity or amount of the product being moved.
+1. movement_id: primary key
+2. timestamp: It records the date and time of the product movement.
+3. from_location_id: It stores the identifier of the location from which the product is being moved. It references the location_id in the location table, indicating the source location of the product.
+4. to_location_id: It stores the identifier of the destination for the product movement. It references the corresponding location_id in the location table, indicating the target location where the product is being moved.
+5. product_id: It stores the identifier of the specific product being moved. It references the product_id in the product table, linking the movements to the relevant product.
+6. quantity: It records the quantity or amount of the product being moved.
 
 ![product_movement_table](https://github.com/Poova53/Inventory_Manager_Using_Flask/assets/75072789/828d7c70-5f54-4ec6-81d7-a8f47c4936dd)
 
@@ -39,9 +39,9 @@ The product movement table consists of six columns:
 In Flask, views are the functions or methods that handle HTTP requests from clients and generate HTTP responses. Views define the routes of the application, which determines the URL that trigger specific views. Flasks views and routing system provide a straightforward way to map URL routes to specific functions and handle incoming requests from clients in a clear and organized manner.
 
 This project has three views:
-        - Add/Edit/ViewProduct
-        - Add/Edit/ViewLocation
-        - Add/Edit/ViewProductMovement
+- Add/Edit/ViewProduct
+- Add/Edit/ViewLocation
+- Add/Edit/ViewProductMovement
 
 ### Add/Edit/ViewProduct
 
@@ -62,9 +62,9 @@ This view is a key component of this web application that allow users to track a
 ![view_product_movement](https://github.com/Poova53/Inventory_Manager_Using_Flask/assets/75072789/7f88cce3-6bc4-4ec2-b33c-1e5f165f80f8)
 
 In the form, the import option in the source input is used move new products into our warehouse and the export option in the destination is used to move products out from our warehouses. The form submission has client side validation checks using JavaScript. When user submits the form, the JavaScript validation checks triggered. It verifies the input value and validate them. The validation fails on anyone of the below conditions:
-        - if anyone of the field was not filled.
-        - if the source and destination were same.
-        - if source selected as import and destionation as export.
+- if anyone of the field was not filled.
+- if the source and destination were same.
+- if source selected as import and destionation as export.
 
 ![pm_source_and_destination_same](https://github.com/Poova53/Inventory_Manager_Using_Flask/assets/75072789/77c94d84-8c4b-4036-ba59-679064fb3cdc)
 ![pm_import_and_export](https://github.com/Poova53/Inventory_Manager_Using_Flask/assets/75072789/b3896802-2522-4e93-9ac1-f57f31c82c71)
@@ -103,18 +103,18 @@ In the server side, many checks and processes need to be done. At first the prod
 ![view_location](https://github.com/Poova53/Inventory_Manager_Using_Flask/assets/75072789/84b4c24f-8b70-41f4-b2f6-8334f934fc02)
 
 - Make Product Movements.
-  - At first Moved all products to a different locations with a quantity of 100.
+- At first Moved all products to a different locations with a quantity of 100.
 
 ![four_products_added](https://github.com/Poova53/Inventory_Manager_Using_Flask/assets/75072789/06033bb0-bcfb-4232-a5aa-286a14b52cea)
 
-  - Moved all the products with random quantity from one location to another.
-  - More than 20 moves were made across these warehouses.
+- Moved all the products with random quantity from one location to another.
+- More than 20 moves were made across these warehouses.
 - After making many number of moves, the total quantity of all products remains unchanged. This ensures the consistency of the inventory system, as the sum of the quantities before and after the movements remains the same. Products in each location were shown in below reports.
 
- in product movement view
+ In product movement view
  ![after_moved](https://github.com/Poova53/Inventory_Manager_Using_Flask/assets/75072789/3be77a64-4718-4f84-abb6-f4b8cc1f6763)
 
-in database
+In database
 ![database_after_moved](https://github.com/Poova53/Inventory_Manager_Using_Flask/assets/75072789/a8036925-b591-4f8c-a839-0a15ef760eec)
 
 ---
