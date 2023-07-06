@@ -127,11 +127,11 @@ In the server side, many checks and processes need to be done. At first the prod
 - More than 20 moves were made across these warehouses.
 - After making many number of moves, the total quantity of all products remains unchanged. This ensures the consistency of the inventory system, as the sum of the quantities before and after the movements remains the same. Products in each location were shown in below reports.
 
-In product movement view
+**In product movement view**
 ![after_moved](https://github.com/Poova53/Inventory_Manager_Using_Flask/assets/75072789/3be77a64-4718-4f84-abb6-f4b8cc1f6763)
 
 
-In database
+**In database**
 ![database_after_moved](https://github.com/Poova53/Inventory_Manager_Using_Flask/assets/75072789/a8036925-b591-4f8c-a839-0a15ef760eec)
 
 
@@ -139,7 +139,7 @@ In database
 
 ## **Report**
 
-Created an warehouse view to present the products and its quantity in each location. This view takes location as query parameter in URL(http://127.0.0.1:5000/Warehouse/?location=<location name>). User can enter this report of a specific location by click the the location name in View Product Movement view. It is important to note that some products are moved out (exported). So considering the exported products in the quantity summation, the total quantity of all products remains balanced.
+Created an warehouse view to present the products and its quantity in each location. This view takes location as query parameter in URL(http://127.0.0.1:5000/Warehouse/?location=<location name>). User can enter this report of a specific location by click the the location name in View Product Movement view. It is important to note that **some products are moved out** (exported). So considering the exported products in the quantity summation, the total quantity of all products remains balanced.
 
 - In Chennai
 ![report_in_chennai](https://github.com/Poova53/Inventory_Manager_Using_Flask/assets/75072789/fd578455-0173-445f-a9c8-a8988c1f2d2b)
