@@ -2,7 +2,7 @@
 
 This app helps to manage the inventory of warehouses located in different locations. It allow users to add products and locations and as well as move products from one location to another. I utilized Python's **Flask** framework along with SQLite for the database and HTML, CSS, Bootstrap and Javascript for the project.
 
-## **Database Tables**
+## [**Database Tables**](https://github.com/Poova53/Inventory_Manager_Using_Flask/tree/main/instance)
 
 In this project SQLite was used as the database engine for the warehouse management system. SQLite is a lightweight, serverless and self contained database engine that offers a simple and efficient way to store and retrieve data, making it suitable for managing the inventory of warehouses.
 
@@ -11,10 +11,12 @@ By utilizing SQLite as database engine, I developed a warehouse database that in
 ### Product Table
 
 This table consist of two columns product_id which serves as the primary key and name column which is unique, stores the name of the product.
+![product table](https://github.com/Poova53/Inventory_Manager_Using_Flask/blob/main/screenshots/product_table.png)
 
 ### Location Table
 
 The location table consists of two columns location_id which is the primary key and location column which is unique and stores the name of each warehouse location.
+![location table](https://github.com/Poova53/Inventory_Manager_Using_Flask/blob/main/screenshots/location_table.png)
 
 ### Product Movement Table
 
