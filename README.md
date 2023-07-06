@@ -11,12 +11,12 @@ By utilizing SQLite as database engine, I developed a warehouse database that in
 ### Product Table
 
 This table consist of two columns product_id which serves as the primary key and name column which is unique, stores the name of the product.
-![product table](https://github.com/Poova53/Inventory_Manager_Using_Flask/blob/main/screenshots/product_table.jpg)
+![product_table](https://github.com/Poova53/Inventory_Manager_Using_Flask/assets/75072789/867691af-1138-4779-939c-23a793a5c7d9)
 
 ### Location Table
 
 The location table consists of two columns location_id which is the primary key and location column which is unique and stores the name of each warehouse location.
-![location table](http://allpicts.in/wp-content/uploads/2018/03/Natural-Images-HD-1080p-Download-with-Keyhole-Arch-at-Pfeiffer-Beach.jpg)
+ss: [location table](https://github.com/Poova53/Inventory_Manager_Using_Flask/blob/main/screenshots/location_table.jpg)
 
 ### Product Movement Table
 
@@ -27,6 +27,7 @@ The product movement table consists of six columns:
     4. to_location_id: It stores the identifier of the destination for the product movement. It references the corresponding location_id in the location table, indicating the target location where the product is being moved.
     5. product_id: It stores the identifier of the specific product being moved. It references the product_id in the product table, linking the movements to the relevant product.
     6. quantity: It records the quantity or amount of the product being moved.
+ss: [product movement table](https://github.com/Poova53/Inventory_Manager_Using_Flask/blob/main/screenshots/product_movement_table.jpg)
 
 ---
 
@@ -42,6 +43,7 @@ This project has three views:
 ### Add/Edit/ViewProduct
 
 In this view, users can view a list of existing products including their IDs and names. It shows the available products stored in the database. By filling the form provided in the page, user can able to add new product to the database.
+ss: [View produc
 
 ### Add/Edit/ViewLocation
 
