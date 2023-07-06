@@ -11,6 +11,7 @@ By utilizing SQLite as database engine, I developed a warehouse database that in
 ### Product Table
 
 This table consist of two columns product_id which serves as the primary key and name column which is unique, stores the name of the product.
+
 ![product_table](https://github.com/Poova53/Inventory_Manager_Using_Flask/assets/75072789/867691af-1138-4779-939c-23a793a5c7d9)
 
 ### Location Table
