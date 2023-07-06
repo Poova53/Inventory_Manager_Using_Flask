@@ -15,7 +15,7 @@ const validateForm = () => {
   } else if (fromLocation.value === toLocation.value) {
     showError.style.display = "block";
     errorSpan.innerText =
-      "From and to locations were same! Please change one of the location";
+      "Source and destination locations were same! Please change one of the location";
 
     return false;
   }

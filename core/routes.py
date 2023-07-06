@@ -107,7 +107,7 @@ def movement():
                     if to_location_name == "export":
                         # make the movement without to location
                         new_movement = ProductMovement(quantity=quantity, from_location=from_location, product=product)
-                        flash(f"{quantity} {product.name}(s) exported successfully {from_location.name}", "text-success")
+                        flash(f"{quantity} {product.name}(s) exported successfully from {from_location.name}", "text-success")
                     
                     # else we want to move product to another location
                     else:
